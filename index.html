@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <title>Portfolio Management</title>
+
+    <!--Style sheets-->
+    <link href="css/bootstrap.css" rel="stylesheet"/>
+    <link href="css/app.css" rel="stylesheet"/>
+
+    <!--Library scripts-->
+    <script src="js/jquery-1.11.3.js"></script>
+    <script src="js/angular.js"></script>
+    <script src="js/angular-resource.js"></script>
+    <!--<script src="js/angular-mocks.js"></script>-->
+    <script src="js/angular-ui-router.js"></script>  <!--download from ../github.com/angular-ui/ui-router-->
+    <script src="js/bootstrap.js"></script> <!--bootstrap requires jQuery.-->
+    <script src="js/ui-utils.js"></script>
+    <script src="js/ui-bootstrap-tpls-0.13.0.js"></script>
+    <script src="js/tableExport.js"></script>
+    <script src="js/jquery.base64.js"></script>
+
+    <!--Application scripts-->
+    <script src="app/app.js"></script>
+
+    <!--Services-->
+    <script src="common/services/common.services.js"></script>
+    <script src="common/services/portfolioResource.js"></script>
+    <script src="common/services/portfolioHistoricalDetail.js"></script>
+    <script src="common/services/portfolioHistoricalDetailMock.js"></script>
+    <script src="common/services/portfolioResourceMock.js"></script>
+    <script src="common/services/portfolioHistoricalTransaction.js"></script>
+    <script src="common/services/portfolioSleeveAnalysisDetail.js"></script>
+    <script src="common/services/portfolioUtilities.js"></script>
+
+
+    <!--Portfolio Controllers-->
+
+    <script src="app/portfolios/portfolioListCtrl.js"></script>
+    <script src="app/portfolios/portfolioDetailCtrl.js"></script>
+    <script src="app/portfolios/portfolioEditCtrl.js"></script>
+    <script src="app/portfolios/portfolioEditInfoCtrl.js"></script>
+    <script src="app/portfolios/portfolioEditTagsCtrl.js"></script>
+    <script src="app/portfolios/portfolioHistoricalTransactionReportCtrl.js"></script>
+    <script src="app/portfolios/portfolioHistoricalDetailReportCtrl.js"></script>
+    <script src="app/portfolios/portfolioSleeveAnalysisDetailReportCtrl.js"></script>
+    <script src="app/portfolios/portfolioSleeveSetUpReportCtrl.js"></script>
+    <script src="app/portfolios/portfolioReportInfoCtrl.js"></script>
+    <script src="app/portfolios/portfolioReportInfoCtrl.js"></script>
+    <script src="app/portfolios/portfolioReportCtrl.js"></script>
+
+
+
+
+</head>
+
+<body ng-app="Port-Authority"></body>
+
+<!--Navigation bar.  ui-sref directive defines the state name.-->
+<nav class="navbar navbar-inverse">
+    <div class="container">
+        <a class="navbar-brand" ui-sref="home">Acme Portfolio Management</a>
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+        </div>
+        <div class="navbar-collapse collapse">
+            <ul class="nav navbar-nav">
+                <li><a ui-sref="portfolioList">Portfolio List</a></li>
+                <li><a ui-sref="portfolioReport.info({portfolioId:0})"><i class="glyphicon glyphicon-plus"></i>Add portfolio</a></li>
+            </ul>
+        </div>
+    </div>
+</nav>
+<!--End navigation bar.-->
+
+<div class="container">
+    <div ui-view></div>
+</div>
+</html>

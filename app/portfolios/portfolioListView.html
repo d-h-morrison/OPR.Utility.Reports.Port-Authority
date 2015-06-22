@@ -1,0 +1,42 @@
+
+<div class="panel panel-primary">
+    <div class="panel-heading">
+        Portfolio List portfolioListView.html.
+    </div>
+
+    <div class="panel-body">
+        <table class="table" ng-controller="PortfolioListCtrl as vm">
+            <thead>
+            <tr>
+                <!--<td><button class="btn btn-primary" type="button" ng-click="vm.toggleImage()">
+                    {{vm.showImage?"Hide":"Show"}}  Image
+                </button>
+                </td>-->
+                <td>Portfolio</td>
+                <td>Code</td>
+                <td>As Of</td>
+                <td></td>
+            </tr>
+            </thead>
+            <tbody>
+            <tr ng-repeat="portfolio in vm.portfolios.value">
+                <!--<td>
+                    <img ng-if="vm.showImage"
+                         ng-src="{{portfolio.view.imageUrl}}"
+                         style="width: 50px;margin: 2px"
+                         title="{{ portfolio.Name }}">
+                </td>-->
+                <td>{{portfolio.Name}}</td>
+                <td>{{portfolio.Dim_InvestmentPool_ID}}</td>
+                <td>{{portfolio.ModifiedDate}}</td>
+                <!--<td>{{portfolio.NAV | currency}}</td>-->
+                <td>
+                    <a class="btn btn-primary" ui-sref="portfolioReport.historicalDetail({portfolioId: portfolio.Dim_InvestmentPool_ID})">
+                        Select Report
+                    </a>
+                </td>
+            </tr>
+            </tbody>
+        </table>
+    </div>
+</div>

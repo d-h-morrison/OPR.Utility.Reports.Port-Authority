@@ -1,0 +1,149 @@
+<form class="form-horizontal" name="historicalTransactionReport">
+<div>Portfolio Historical Detail Report controls and Info Here....</div>
+<div>Columns: Market Value, Monthly Return, Quarterly Return, YTD, ACB,</div>
+<div>Filters: Time Frame, Currency</div>
+
+<div class="panel panel-primary"
+     ng-controller="PortfolioHistoricalDetailReportCtrl as vm">
+
+    <div class="panel-heading"
+         style="font-size:large">
+        Portfolio List
+    </div>
+
+
+    <div class="panel-body">
+        <div class="btn-group">
+
+            <div>
+<!--                <label>
+                    Client Id Boy!!:
+                    <input type="number" ng-model="portfolio.portfolioId" />
+                </label>-->
+            </div>
+
+            <button class="btn btn-warning btn-sm dropdown-toggle" data-toggle="dropdown"><i class="fa fa-bars"></i> Export Table Data</button>
+            <ul class="dropdown-menu" role="menu">
+                <li><a href="#" onclick="$('#customers').tableExport({type:'json',escape:'false'});"> <img src="images/json.png" width='24px'> JSON</a></li>
+                <li><a href="#" onclick="$('#customers').tableExport({type:'json',escape:'false',ignoreColumn:'[2,3]'});"> <img src='images/json.png' width='24px'> JSON (ignoreColumn)</a></li>
+                <li><a href="#" onclick="$('#customers').tableExport({type:'json',escape:'true'});"> <img src='images/json.png' width='24px'> JSON (with Escape)</a></li>
+                <li class="divider"></li>
+                <li><a href="#" onclick="$('#customers').tableExport({type:'xml',escape:'false'});"> <img src='images/xml.png' width='24px'> XML</a></li>
+                <li><a href="#" onclick="$('#customers').tableExport({type:'sql'});"> <img src='images/sql.png' width='24px'> SQL</a></li>
+                <li class="divider"></li>
+                <li><a href="#" onclick="$('#customers').tableExport({type:'csv',escape:'false'});"> <img src='images/csv.png' width='24px'> CSV</a></li>
+                <li><a href="#" onclick="$('#customers').tableExport({type:'txt',escape:'false'});"> <img src='images/txt.png' width='24px'> TXT</a></li>
+                <li class="divider"></li>
+                <li><a href="#" onclick="$('#customers').tableExport({type:'excel',escape:'false'});"> <img src='images/xls.png' width='24px'> XLS</a></li>
+                <li><a href="#" onclick="$('#customers').tableExport({type:'doc',escape:'false'});"> <img src='images/word.png' width='24px'> Word</a></li>
+                <li><a href="#" onclick="$('#customers').tableExport({type:'powerpoint',escape:'false'});"> <img src='images/ppt.png' width='24px'> PowerPoint</a></li>
+                <li class="divider"></li>
+                <li><a href="#" onclick="$('#customers').tableExport({type:'png',escape:'false'});"> <img src='images/png.png' width='24px'> PNG</a></li>
+                <li><a href="#" onclick="$('#customers').tableExport({type:'pdf',pdfFontSize:'7',escape:'false'});"> <img src='images/pdf.png' width='24px'> PDF</a></li>
+            </ul>
+
+        </div>
+
+        <div class="form-group">
+            <label class="col-md-2 control-label"
+                   for="inputAvailablilityDate">Start Date:</label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input class="form-control"
+                           id="inputStartDate"
+                           type="text"
+                           datepicker-popup="MMM dd, yyyy"
+                           is-open="vm.sdOpened"
+                           ng-model="vm.startDate">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" ng-click="vm.startDateOpen($event)">
+                            <i class="glyphicon glyphicon-calendar"/>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+        <div class="form-group">
+            <label class="col col-md-2 control-label"
+                   for="inputAvailablilityDate">End Date:</label>
+            <div class="col-md-4">
+                <div class="input-group">
+                    <input class="form-control"
+                           id="inputEndDate"
+                           type="text"
+                           datepicker-popup="MMM dd, yyyy"
+                           is-open="vm.edOpened"
+                           ng-model="vm.endDate">
+                    <span class="input-group-btn">
+                        <button class="btn btn-default" ng-click="vm.endDateOpen($event)">
+                            <i class="glyphicon glyphicon-calendar"/>
+                        </button>
+                    </span>
+                </div>
+            </div>
+        </div>
+
+        <table class="table" id="customers">
+
+            <thead>
+            <tr>
+                <th>Fund Name</th>
+                <th>End Date</th>
+                <th>TWR Month TD</th>
+                <th>TWR Quarter TD</th>
+                <th>TWR Year TD</th>
+                <th>Market Value</th>
+
+<!--                <th>ACB</th>
+                <th>NAV</th>-->
+                <!--                "portfolioId": 1,
+                "fundName": "Norm Fund",
+                "marketValue": 4345,
+                "monthlyReturn": 3.5,
+                "quarterlyReturn": 3.1,
+                "yTd": 3.0,
+                "aCb": 1.3,
+                "nAv": 1234,
+                "endDate": "12-31-04"-->
+            </tr>
+            </thead>
+            <tbody>
+            <!--binding directive e.g.: "{{product.productName}}"Date,PLISk,Name,AcbMtd,TwrMtd,TwrQtd,TwrCytd,MV-->
+            <tr ng-repeat="port in vm.portfolios.value"> <!--portfolios.view-->
+                <td>{{ port.Name}}</td>
+                <td>{{ port.Date | date}}</td>
+                <td>{{ port.TwrMtd | percentage:2 }}</td>
+                <td>{{ port.TwrQtd | percentage:2 }}</td>
+                <td>{{ port.TwrCytd| percentage:2 }}</td>
+                <td>{{ port.MV }}</td>
+<!--                <td>{{ port.aCb }}</td>
+                <td>{{ port.nAv | currency  }}</td>-->
+            </tr>
+            </tbody>
+        </table>
+        <div class="form-group">
+            <div class="col-md-4 col-md-offset-2">
+                <span>
+                    <button class="btn btn-primary"
+                            style="width:80px;margin-right:10px"
+                            type="submit"
+                            ng-click="vm.run(vm.portfolios[0].portfolioId)">
+                        Boyah
+                    </button>
+                </span>
+                <span>
+                    <button class="btn btn-default"
+                            style="width:70px"
+                            ng-click="vm.clear()">
+                        Clear
+                    </button>
+                </span>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel-footer">
+
+    </div>
+</div>
+</form>

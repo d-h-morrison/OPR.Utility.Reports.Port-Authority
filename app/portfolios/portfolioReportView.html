@@ -1,0 +1,39 @@
+<!--Panel surrounding report parameters section.-->
+<div class="panel panel-primary">
+    <div class="panel-heading" style="font-size: large">
+        {{vm.title}} portfolioReportView.html!
+    </div>
+
+    <!--Tab views for various reports-->
+    <div class="panel-body">
+
+        <div class="wizard">
+            <!--<a ui-sref=".info"
+               ui-sref-active="active">
+                Portfolio Information
+            </a>-->
+            <!--Need to name a report here. Replace <.info>-->
+            <a ui-sref=".historicalDetail"
+               ui-sref-active="active">
+                Historical Detail
+            </a>
+            <!--Need to name a report here. Replace <.NAV>-->
+            <a ui-sref=".historicalTransaction">
+                Historical Transaction
+            </a>
+            <!--Need to name a report here. Replace <.tags>-->
+            <a ui-sref=".sleeveAnalysis">
+                Sleeve Analysis
+            </a>
+            <!--Need to name a report here. Replace <.tags>-->
+            <a ui-sref=".sleeveSetUp">
+                Sleeve Set Up
+            </a>
+            <div ui-view></div>
+        </div>
+
+    </div>
+    <!--End Tab views for various reports.-->
+
+</div>
+<!--End panel surrounding report parameters.-->
